@@ -61,7 +61,7 @@ const circumference = 2 * Math.PI * radius;
     </div>
     <input class="slider" type="range" min="0" max="300" bind:value={duration} on:input={onDurationChange} />
 
-    <svg viewBox="0 0 300 300" class="ring" aria-hidden>
+    <svg viewBox="0 0 300 300" class="ring" aria-hidden="true">
       <circle cx="{cx}" cy="{cy}" r="{radius}" stroke="rgba(255,255,255,0.2)" stroke-width="18" fill="none" />
       <circle
         cx="{cx}"
@@ -145,6 +145,7 @@ const circumference = 2 * Math.PI * radius;
     border-radius: 10px;
     background: rgba(255, 255, 255, 0.2);
     outline: none;
+    appearance: none;
     -webkit-appearance: none;
     cursor: pointer;
   }

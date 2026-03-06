@@ -1,121 +1,68 @@
-# SvelteKit Starter Project
+# RelaxGame - SvelteKit on GitHub Pages
 
-This is a starter project for learning web development with **SvelteKit** and **TypeScript**.
+This project is configured as a fully static SvelteKit app using `@sveltejs/adapter-static`.
 
-## Getting Started
+## Stack
 
-After cloning this repository, follow these steps:
+- Node.js
+- Vite
+- SvelteKit
+- Static adapter (`@sveltejs/adapter-static`)
 
-1. **Install dependencies**
-   ```bash
-   npm install
-   ```
+## Static Build Configuration
 
-2. **Start the development server**
-   ```bash
-   npm run dev
-   ```
+`svelte.config.js` is configured to:
 
-3. **Open your browser**
-   - Navigate to `http://localhost:5173` (or the URL shown in your terminal)
-   - The page will automatically reload when you make changes to your code
+- output pages to `build`
+- output assets to `build`
+- use `fallback: 'index.html'` for SPA routing
+- use `paths.base = '/RelaxGame'` in production for GitHub Pages
 
-## Verifying Your Code
+## Scripts
 
-Before committing your changes, you should check that your code is good:
+```json
+"scripts": {
+  "dev": "vite dev",
+  "build": "vite build",
+  "preview": "vite preview"
+}
+```
 
-1. **Check for TypeScript and Svelte errors**
-   ```bash
-   npm run check
-   ```
-   This checks your TypeScript code and Svelte components for errors.
+## Local Development
 
-2. **Check for code style issues (linting)**
-   ```bash
-   npm run lint
-   ```
-   This checks if your code follows best practices and coding standards.
+```bash
+npm install
+npm run dev
+```
 
-3. **Format your code automatically**
-   ```bash
-   npm run format
-   ```
-   This automatically formats your code to make it consistent and readable.
-
-**Tip:** Run all three commands before committing your code to ensure everything is in good shape!
-
-## Building for Production
-
-When you're ready to create a production build:
+## Build Locally
 
 ```bash
 npm run build
 ```
 
-To preview the production build locally:
+Build output is written to `build/`.
 
-```bash
-npm run preview
-```
+## GitHub Actions Deployment
 
-## Project Structure
+Workflow file: `.github/workflows/deploy.yml`
 
-Here's what each folder contains:
+The workflow:
 
-### 📁 `src/`
-This is where all your application code lives.
+- triggers on push to `main`
+- installs dependencies
+- runs `npm run build`
+- uploads `build/`
+- deploys to GitHub Pages
 
-- **`src/routes/`** - Your application pages and routes
-  - Each `.svelte` file in this folder becomes a page
-  - `+page.svelte` files are the actual pages
-  - `+layout.svelte` files wrap pages with common elements (like headers/footers)
+## Enable Pages in GitHub
 
-- **`src/lib/`** - Reusable components and utilities
-  - Put your custom Svelte components here
-  - You can import from this folder using `$lib/...`
+1. Open repository settings on GitHub.
+2. Go to `Pages`.
+3. Set `Source` to `GitHub Actions`.
 
-- **`src/app.html`** - The HTML template for your entire app
-  - This is the base HTML structure
-  - Usually you don't need to change this often
+After that, each push to `main` deploys automatically.
 
-### 📁 `static/`
-Files that should be served as-is (images, fonts, favicon, etc.)
-- Files here are accessible at the root URL
-- Example: `static/favicon.svg` → `http://localhost:5173/favicon.svg`
+Expected site URL:
 
-### 📁 `.svelte-kit/`
-Generated files by SvelteKit (created automatically)
-- Don't edit files in here
-- This folder is not committed to git
-
-## Important Files (What You'll Change Most Often)
-
-### For Beginners, Focus on These Files:
-
-1. **`src/routes/+page.svelte`**
-   - This is your home page
-   - Start editing here to see changes in your browser
-   - Write HTML, CSS, and TypeScript all in one file
-
-2. **`src/routes/+layout.svelte`**
-   - This wraps all your pages
-   - Good place for navigation, headers, or footers that appear on every page
-
-3. **`src/lib/` folder**
-   - Create reusable components here
-   - Example: `src/lib/Button.svelte`, `src/lib/Card.svelte`
-
-4. **`static/` folder**
-   - Add images, fonts, or other static files here
-
-### Configuration Files (Less Frequently Changed)
-
-**Do not change these files unless you know what you are doing.**
-
-- **`package.json`** - Lists your project dependencies and scripts
-- **`svelte.config.js`** - SvelteKit configuration
-- **`vite.config.ts`** - Vite (build tool) configuration
-- **`tsconfig.json`** - TypeScript configuration
-- **`eslint.config.js`** - Code linting rules
-
-Happy coding! 🚀
+`https://jonathan010110.github.io/RelaxGame/`
